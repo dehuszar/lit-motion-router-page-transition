@@ -87,40 +87,22 @@ export class App extends LitElement {
       pattern: new URLPattern({ pathname: "/" }),
       render: () => {
         updatePage(this.currentPage, 'page-root');
-
-        return html`<page-root ${animate({
-          keyframeOptions: {
-            duration: 300,
-            easing: 'ease-in-out'
-          },
-          properties: ['left', 'opacity', 'color', 'background', 'background-color']
-        })}></page-root>`},
+        
+        return html`<page-root></page-root>`},
     },
     {
       pattern: new URLPattern({ pathname: "/1" }),
       render: () => {
         updatePage(this.currentPage, 'page-one');
         
-        return html`<page-one ${animate({
-          keyframeOptions: {
-            duration: 300,
-            easing: 'ease-in-out'
-          },
-          properties: ['left', 'opacity', 'color', 'background', 'background-color']
-        })}></page-one>`},
+        return html`<page-one></page-one>`},
     },
     {
       pattern: new URLPattern({ pathname: "/2" }),
       render: () => {
         updatePage(this.currentPage, 'page-two')
         
-        return html`<page-two ${animate({
-          keyframeOptions: {
-            duration: 300,
-            easing: 'ease-in-out'
-          },
-          properties: ['left', 'opacity', 'color', 'background', 'background-color']
-        })}></page-two>`
+        return html`<page-two></page-two>`
       },
     }
   ]);
@@ -132,6 +114,8 @@ export class App extends LitElement {
           <a href="/1">one</a>
           <a href="/2">two</a>
         </nav>
+        <!-- here we define the animation configuration for all components loaded directly into the router's outlet -->
+        <!-- we are able to animate most things about it's rel -->
         <section class=${classMap(this.currentPage)} ${animate({
           keyframeOptions: {
             duration: 300,

@@ -1,2 +1,6 @@
 # lit-motion-router-page-transition
 This repo is intended to act as a "quick-n-dirty" demonstration of @lit-labs/router and @lit-labs/motion being used together to animate page transitions.
+
+As both libraries are still under active development, there are a few details which may change dramatically from when this was created, but some quick observations which may be helpful to others:
+- There needs to be a top-level component which owns the router/routes controller(s)
+- Because of scope barriers introduced by the ShadowDOM when nesting components, animations can be applied to any markup owned by the router component, in this case to the section that wraps our outlet.  But animations applied to components rendered inside the outlet, or elements scoped within those outlet-rendered components would need to have any desired transitions defined internally to the component configuration; either during the `disconnectedCallback`, `connectedCallback`, and perhaps the `adoptedCallback` lifecycle events.

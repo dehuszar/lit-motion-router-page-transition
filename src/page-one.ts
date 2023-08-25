@@ -31,6 +31,10 @@ export class PageOne extends LitElement {
         <img src="../public/ralph.jpg">
         <p>I'm page one!</p>
       </article>
+      <!-- here we add a post-render animation; I found that a slight delay was
+        necessary in order for the animation to not be swallowed by the render -->
+      <!-- I also lengthened it a little more than needed for dramatic effect;
+        200ms would have done the trick -->
       <aside class="${this.visible ? 'visible' : ''}" ${animate()}><p>Sure you are Ralph.</p></aside>
     `;
   }
