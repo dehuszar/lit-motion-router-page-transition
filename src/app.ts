@@ -1,8 +1,15 @@
+// Conditional ESM module loading (Node.js and browser)
+// @ts-ignore: Property 'UrlPattern' does not exist 
+if (!globalThis.URLPattern) { 
+  await import("urlpattern-polyfill");
+}
+
 import { css, html, LitElement } from "lit";
 import { customElement, property } from "lit/decorators.js";
 import { Router } from "@lit-labs/router";
 import { animate } from "@lit-labs/motion";
 import { classMap } from "lit/directives/class-map.js";
+
 import "./page-root";
 import "./page-one";
 import "./page-two";
@@ -14,24 +21,6 @@ const updatePage = (pageStates: {}, page:string) => {
     pageStates[key] = page === key ? true : false
   }
 }
-
-// Conditional ESM module loading (Node.js and browser)
-// @ts-ignore: Property 'UrlPattern' does not exist 
-if (!globalThis.URLPattern) { 
-  await import("urlpattern-polyfill");
-}
-/** 
- * The above is the recommended way to load the ESM module, as it only
- * loads it on demand, thus when not natively supported by the runtime or
- * already polyfilled.
- */
-import "urlpattern-polyfill";
-
-/** 
- * In case you want to replace an existing implementation with the polyfill:
- */
-import {URLPattern} from "urlpattern-polyfill";
-globalThis.URLPattern = URLPattern;
 
 @customElement("sample-app")
 export class App extends LitElement {
